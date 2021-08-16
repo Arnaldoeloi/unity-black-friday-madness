@@ -25,12 +25,12 @@ MonoBehaviour:
   m_SupportsTerrainHoles: 1
   m_SupportsHDR: 0
   m_MSAA: 1
-  m_RenderScale: 0.939
+  m_RenderScale: 0.884
   m_MainLightRenderingMode: 1
   m_MainLightShadowsSupported: 0
   m_MainLightShadowmapResolution: 256
   m_AdditionalLightsRenderingMode: 1
-  m_AdditionalLightsPerObjectLimit: 5
+  m_AdditionalLightsPerObjectLimit: 3
   m_AdditionalLightShadowsSupported: 1
   m_AdditionalLightsShadowmapResolution: 512
   m_ShadowDistance: 50

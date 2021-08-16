@@ -4,7 +4,8 @@ public class MainPlayer: MonoBehaviour
 {
     [SerializeField] private MoveSettings _settings = null;
 
-    private Vector3 _moveDirection;
+    [HideInInspector]
+    public Vector3 _moveDirection;
     private CharacterController _controller;
 
     public Gun gun = null;
