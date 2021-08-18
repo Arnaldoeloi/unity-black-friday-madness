@@ -10,11 +10,13 @@ public class Gun : MonoBehaviour
     public int currentAmmo = 30;
     public float range = 100f;
 
+    public Vector3[] eggsPositions;
+
     public Camera fpsCam;
     // Start is called before the first frame update
     void Start()
     {
-        
+        eggsPositions = new Vector3[maxAmmo];
     }
 
     // Update is called once per frame
