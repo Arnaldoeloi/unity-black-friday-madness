@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Psx_Unlit_Buddha
+  m_Name: M_EggGun
   m_Shader: {fileID: -6465566751694194690, guid: 9811a975b6d99df45b93bb716dacc497,
     type: 3}
   m_ShaderKeywords: 
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_4450AB74:
-        m_Texture: {fileID: 2800000, guid: 51cdb6b8f84a1114280280ceec03bf34, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3eefcbca536c2084a8e5607e01335284, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_9E9BBF1C:
@@ -70,19 +70,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Boolean_193028D2: 1
-    - Boolean_3F1A8DAB: 1
-    - Boolean_43476D73: 1
-    - Boolean_7165A49C: 1
+    - Boolean_3F1A8DAB: 0
+    - Boolean_43476D73: 0
+    - Boolean_7165A49C: 0
     - Boolean_85059BBE: 1
-    - Boolean_8BBF99CD: 1
+    - Boolean_8BBF99CD: 0
     - Boolean_D258FF8E: 1
     - Vector1_21C41D02: 153
     - Vector1_6F288C5B: 0.9
     - Vector1_712E4D45: 16.99
-    - Vector1_B2CC132F: 100
+    - Vector1_B2CC132F: 281.2
     - Vector1_B74833F8: 1
     - Vector1_B9994903: 15.5
-    - Vector1_E8746023: 11.98
+    - Vector1_E8746023: 2.7
     - Vector1_F6C0D59C: 1
     - _AlphaClip: 0
     - _Blend: 0

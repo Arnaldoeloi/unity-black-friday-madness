@@ -16,10 +16,10 @@ MonoBehaviour:
   m_AdvancedMode: 0
   widthPixelation:
     m_OverrideState: 1
-    m_Value: 517.99
+    m_Value: 824.5
   heightPixelation:
     m_OverrideState: 1
-    m_Value: 256
+    m_Value: 757.7
   colorPrecision:
     m_OverrideState: 1
     m_Value: 80
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   fogDensity:
     m_OverrideState: 1
-    m_Value: 2.45
+    m_Value: 2.68
   fogDistance:
     m_OverrideState: 1
     m_Value: 129.4
@@ -93,7 +93,7 @@ MonoBehaviour:
     showEyeDropper: 1
   fogNear:
     m_OverrideState: 1
-    m_Value: 66.43
+    m_Value: 69.1
   fogFar:
     m_OverrideState: 1
     m_Value: 25
