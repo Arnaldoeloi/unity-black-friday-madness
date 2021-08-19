@@ -1,4 +1,6 @@
 using UnityEngine;
+//using UnityEngine.UI;
+using TMPro;
 
 public class MainPlayer: MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class MainPlayer: MonoBehaviour
 
     public Gun gun = null;
 
+    private int score = 0;
+    public TextMeshProUGUI text;
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
@@ -56,5 +60,21 @@ public class MainPlayer: MonoBehaviour
     private void Jump()
     {
         _moveDirection.y += _settings.jumpForce;
+    }
+
+    public void UpdateScore(int n)
+    {
+        score += n; 
+        UpdateText();
+    }
+
+    public void UpdateText()
+    {
+        text.text = score.ToString();
+    }
+
+    public int GetPoints()
+    {
+        return score;
     }
 }
