@@ -23,7 +23,7 @@ public class ScoreIten : MonoBehaviour
         if (other.GetComponent<MainPlayer>())
         {
 
-            other.GetComponent<MainPlayer>().UpdateScore(score);
+            other.GetComponent<PlayerScore>().UpdateScore(score);
 
             Destroy(gameObject);
         }
