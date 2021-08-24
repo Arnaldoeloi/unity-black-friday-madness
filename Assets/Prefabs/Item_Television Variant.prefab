@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!65 &1240402121
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4452906442010903763}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0030319, y: 0.0075704493, z: 0.010949182}
+  m_Center: {x: -0.00023593345, y: 0.0037459861, z: -0.000012202099}
+--- !u!114 &1240402120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4452906442010903763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6fbfeb308bf5da48bcf66725cbe81b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 10
+  name: Television
+--- !u!1001 &3533794091581503874
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 174.09378
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 174.09378
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 174.09378
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.514
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.2638
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.199
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000015454313
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000015454312
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f761eca5b460654b8d5a0f1b34a17c9, type: 2}
+    - target: {fileID: 919132149155446097, guid: 5b0c762a649201a4290c51cb7f918b2e,
+        type: 3}
+      propertyPath: m_Name
+      value: Item_Television
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5b0c762a649201a4290c51cb7f918b2e, type: 3}
+--- !u!1 &4452906442010903763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5b0c762a649201a4290c51cb7f918b2e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3533794091581503874}
+  m_PrefabAsset: {fileID: 0}

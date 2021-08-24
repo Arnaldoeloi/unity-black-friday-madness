@@ -6,6 +6,8 @@ public class ScoreIten : MonoBehaviour
 {
 
     public int score = 10;
+    public string name = "Item";
+
     // Start is called before the first frame update
     void Start()
     {
