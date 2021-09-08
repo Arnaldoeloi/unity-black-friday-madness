@@ -43,22 +43,22 @@ public class PlayerScore : MonoBehaviour
     public void DropRandomItem()
     {
         painSound.Play();
-        if(itemsCollected.Count > 0)
+        if(itemsCollected.Count >= 1)
         {
-            int itemIndex = Random.Range(0, itemsCollected.Count-1);
+            int itemIndex = Random.Range(0, (itemsCollected.Count - 1));
 
             matchLastUpdateText.text = playerName + " dropped " + itemsCollected[itemIndex].nameItem + " worth $" + itemsCollected[itemIndex].score;
-            //Debug.Log("Dropping item "+itemsCollected[itemIndex].nameItem + ". Should deduct "+ itemsCollected[itemIndex].score +" from score.");
+            //Debug.Log("Dropping item "+itemsCollected[itemIndex].nameItem + ". Should deduct "+ itemsCollected[itemIndex].score +" from score.");  
             
-            float randomZ = Random.Range(-10f, 10f);
+            float randomZ = Random.Range(-10f, 10f); 
             float randomX = Random.Range(-10f, 10f);
+
+            UpdateScore(-itemsCollected[itemIndex].score);
 
             Vector3 dropItemPosition = new Vector3(transform.position.x + randomX, 8.3f, transform.position.z + randomZ);
 
             itemsCollected[itemIndex].transform.position = dropItemPosition;
             itemsCollected.RemoveAt(itemIndex);
-
-            UpdateScore(-itemsCollected[itemIndex].score);
         }
     }
 }

@@ -9,9 +9,9 @@ public class EggProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(createdSound, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-        Instantiate(collisionSound, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-        createdSound.GetComponent<AudioSource>().Play();
+        //Instantiate(createdSound, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        //Instantiate(collisionSound, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        //createdSound.GetComponent<AudioSource>().Play();
     }
 
     // Update is called once per frame
@@ -32,10 +32,10 @@ public class EggProjectile : MonoBehaviour
         ContactPoint contact = collision.contacts[0];
         Quaternion rotation = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 position = contact.point;
-        collisionSound.GetComponent<AudioSource>(). Play();
+        //collisionSound.GetComponent<AudioSource>().Play();
 
-        Destroy(createdSound);
-        Destroy(collisionSound);
+        //Destroy(createdSound);
+        //Destroy(collisionSound);
         //Instantiate(explosionPrefab, position, rotation);
         Destroy(gameObject);
     }

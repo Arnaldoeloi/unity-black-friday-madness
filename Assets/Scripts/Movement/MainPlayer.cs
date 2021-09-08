@@ -1,8 +1,9 @@
 using UnityEngine;
+using System.Collections;
 //using UnityEngine.UI;
 
 
-public class MainPlayer: MonoBehaviour
+public class MainPlayer : MonoBehaviour
 {
     [SerializeField] private MoveSettings _settings = null;
 
@@ -10,7 +11,15 @@ public class MainPlayer: MonoBehaviour
     public Vector3 _moveDirection;
     private CharacterController _controller;
 
+    private Rigidbody rb;
+    private bool canDash = true;
+
     public Gun gun = null;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Awake()
     {
@@ -48,6 +57,14 @@ public class MainPlayer: MonoBehaviour
             {
                 Jump();
             }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                
+                if (canDash) {
+                    StartCoroutine(Dash());
+                }
+            }
         }
         else
         {
@@ -60,5 +77,27 @@ public class MainPlayer: MonoBehaviour
         _moveDirection.y += _settings.jumpForce;
     }
 
-    
+    private IEnumerator Dash()
+    {
+        //_moveDirection += Camera.main.transform.forward * _settings.dashForce;
+
+        rb.AddForce(transform.forward * _settings.dashForce, ForceMode.Impulse);
+        //rb.velocity = transform.forward * _settings.dashForce;
+
+        yield return new WaitForSeconds(0.2f);
+
+        //Debug.Log("DashEnd");
+        //rb.velocity = Vector3.zero;
+        StartCoroutine(PauseDash());
+    }
+
+    private IEnumerator PauseDash()
+    {
+        rb.velocity = Vector3.zero;
+        canDash = false;
+
+        yield return new WaitForSeconds(5);
+
+        canDash = true;
+    }
 }
