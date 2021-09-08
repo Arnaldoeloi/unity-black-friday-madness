@@ -31,7 +31,12 @@ public class ScoreItem : MonoBehaviour
 
             playerScore.itemsCollected.Add(this);
             playerScore.UpdateScore(score);
-            pickUpSound.Play();
+
+            if (other.name == "Player")
+            {
+                pickUpSound.Play();
+            }
+
             transform.position = new Vector3(0,-100,0);
             //Destroy(gameObject);
         }

@@ -9,6 +9,9 @@ public class MoveSettings : ScriptableObject
     public float jumpForce { get { return _jumpForce; } private set { _jumpForce = value; } }
     [SerializeField] private float _jumpForce = 13.0f;
 
+    public float dashForce { get { return _dashForce; } private set { _dashForce = value; } }
+    [SerializeField] private float _dashForce = 50.0f;
+
     public float antiBump { get { return _antiBump; } private set { _antiBump = value; } }
     [SerializeField] private float _antiBump = 4.5f;
 
