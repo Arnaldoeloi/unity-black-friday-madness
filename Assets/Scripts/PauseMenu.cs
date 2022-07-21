@@ -14,17 +14,17 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (paused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if (paused)
+        //    {
+        //        //Resume();
+        //    }
+        //    else
+        //    {
+        //        //Pause();
+        //    }
+        //}
     }
 
     public void Resume()

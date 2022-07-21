@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1961767389139232965}
   - component: {fileID: 2584497771633484549}
   - component: {fileID: 9160050414089488364}
+  - component: {fileID: 7384687641642684390}
   m_Layer: 0
   m_Name: EggProjectile
   m_TagString: Untagged
@@ -130,3 +131,19 @@ MonoBehaviour:
     type: 3}
   collisionSound: {fileID: 4652201905780733300, guid: bdbe89be40d6bfc4286b769b2f7ca03d,
     type: 3}
+--- !u!114 &7384687641642684390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7888599684997244450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 using UnityEngine.UI;
 
-public class ScoreItem : MonoBehaviour
+public class ScoreItem : NetworkBehaviour
 {
 
     public int score = 10;

@@ -1,24 +1,33 @@
 using UnityEngine;
+using Unity.Netcode;
 using System.Collections;
+
 //using UnityEngine.UI;
 
 
-public class MainPlayer : MonoBehaviour
+public class MainPlayer : NetworkBehaviour
 {
     [SerializeField] private MoveSettings _settings = null;
 
     [HideInInspector]
     public Vector3 _moveDirection;
     private CharacterController _controller;
+    public GameObject SM_Cart_FPS;
+    public GameObject camera;
 
     private Rigidbody rb;
     private bool canDash = true;
 
+    public GameObject multiplayerBody;
+
+
     public Gun gun = null;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
 
     private void Awake()
@@ -31,9 +40,26 @@ public class MainPlayer : MonoBehaviour
         DefaultMovement();
     }
 
+    public override void OnNetworkSpawn()
+    {
+        if (!IsOwner) {
+            multiplayerBody.SetActive(true);
+            camera.GetComponent<Camera>().enabled = false;
+            camera.GetComponent<CameraMovement>().enabled = false;
+            SM_Cart_FPS.SetActive(false);
+            Destroy(this);
+        }
+        else
+        {
+            multiplayerBody.SetActive(false);
+        }
+
+    }
+
     private void FixedUpdate()
     {
         _controller.Move(_moveDirection * Time.deltaTime);
+
     }
 
     private void DefaultMovement()

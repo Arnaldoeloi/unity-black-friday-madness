@@ -1,10 +1,12 @@
 using UnityEngine;
 
+
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private MoveSettings _settings = null;
 
     private Vector3 _moveDirection;
+
     private CharacterController _controller;
 
     private void Awake()
@@ -12,9 +14,15 @@ public class PlayerMove : MonoBehaviour
         _controller = GetComponent<CharacterController>();
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void Update()
     {
         DefaultMovement();
+
     }
 
     private void FixedUpdate()
@@ -48,6 +56,7 @@ public class PlayerMove : MonoBehaviour
         {
             _moveDirection.y -= _settings.gravity * Time.deltaTime;
         }
+
     }
 
     private void Jump()

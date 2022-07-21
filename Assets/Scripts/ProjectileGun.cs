@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using Unity.Netcode;
 using TMPro;
 
 /// Thanks for downloading my projectile gun script! :D
@@ -10,7 +11,7 @@ using TMPro;
 /// or use the #coding-problems channel of my discord server
 /// 
 /// Dave
-public class ProjectileGun : MonoBehaviour
+public class ProjectileGun : NetworkBehaviour
 {
     //bullet 
     public GameObject bullet;
@@ -52,6 +53,9 @@ public class ProjectileGun : MonoBehaviour
 
     private void Update()
     {
+        if (!IsOwner) return;
+
+
         MyInput();
 
         //Set ammo display, if it exists :D
@@ -74,10 +78,16 @@ public class ProjectileGun : MonoBehaviour
         {
             //Set bullets shot to 0
             bulletsShot = 0;
+            Debug.Log("Should shoot egg projectile.");
+
+
 
             Shoot();
         }
     }
+
+
+
 
     private void Shoot()
     {
@@ -104,18 +114,12 @@ public class ProjectileGun : MonoBehaviour
         //Calculate new direction with spread
         Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0); //Just add spread to last direction
 
-        //Instantiate bullet/projectile
-        GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); //store instantiated bullet in currentBullet
-        //Rotate bullet to shoot direction
-        currentBullet.transform.forward = directionWithSpread.normalized;
+        //Send request to fire to everyone
+        RequestFireServerRpc(directionWithSpread, attackPoint.position, fpsCam.transform.up);
 
-        //Add forces to bullet
-        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
-        currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.up * upwardForce, ForceMode.Impulse);
-
-        //Instantiate muzzle flash, if you have one
-        if (muzzleFlash != null)
-            Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+        // Fire immediately
+        ExecuteShoot(directionWithSpread, attackPoint.position, fpsCam.transform.up);
+        //FireClientRpc(directionWithSpread, attackPoint, fpsCam.transform.up);
 
         bulletsLeft--;
         bulletsShot++;
@@ -134,6 +138,36 @@ public class ProjectileGun : MonoBehaviour
         if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
             Invoke("Shoot", timeBetweenShots);
     }
+
+    [ServerRpc]
+    private void RequestFireServerRpc(Vector3 directionWithSpread, Vector3 atkPointPosition, Vector3 fpsCamUp)
+    {
+        FireClientRpc(directionWithSpread, atkPointPosition, fpsCamUp);
+    }
+
+    [ClientRpc]
+    private void FireClientRpc(Vector3 directionWithSpread, Vector3 atkPointPosition, Vector3 fpsCamUp)
+    {
+        if (!IsOwner) ExecuteShoot(directionWithSpread, atkPointPosition, fpsCamUp);
+    }
+
+    private void ExecuteShoot(Vector3 directionWithSpread, Vector3 atkPointPosition, Vector3 fpsCamUp)
+    {
+        //Instantiate bullet/projectile
+        GameObject currentBullet = Instantiate(bullet, atkPointPosition, Quaternion.identity); //store instantiated bullet in currentBullet
+        //Rotate bullet to shoot direction
+        currentBullet.transform.forward = directionWithSpread.normalized;
+
+        //Add forces to bullet
+        currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+        currentBullet.GetComponent<Rigidbody>().AddForce(fpsCamUp * upwardForce, ForceMode.Impulse);
+
+        //Instantiate muzzle flash, if you have one
+        if (muzzleFlash != null)
+            Instantiate(muzzleFlash, atkPointPosition, Quaternion.identity);
+    }
+
+
     private void ResetShot()
     {
         //Allow shooting and invoking again

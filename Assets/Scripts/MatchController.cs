@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 using UnityEngine.UI;
 
-public class MatchController : MonoBehaviour
+
+public class MatchController : NetworkBehaviour
 {
+    enum GameState: int
+    {
+        WAITING_PLAYERS,
+        PLAYING,
+        END_GAME
+    }
 
     public List<PlayerScore> playerScores;
 
@@ -14,12 +22,25 @@ public class MatchController : MonoBehaviour
     public Text timeText;
     public Text matchLastUpdateText;
 
+    private NetworkVariable<int> gameState = new NetworkVariable<int>();
+
+    //private void Awake()
+    //{
+        
+    //}
+
 
     // Start is called before the first frame update
     void Start()
     {
-        timerIsRunning = true;
-        matchLastUpdateText.text = "";
+
+
+        timerIsRunning = false;
+        if (matchLastUpdateText != null) matchLastUpdateText.text = "";
+
+        
+        gameState.Value= (int)GameState.WAITING_PLAYERS;
+
     }
 
     // Update is called once per frame
@@ -27,6 +48,22 @@ public class MatchController : MonoBehaviour
     {
         updateTime();
     }
+
+    //[ClientRpc]
+    void EndGame()
+    {
+        gameState.Value = (int)GameState.END_GAME;
+        TimeRunOut();
+    }
+
+
+    //[ClientRpc]
+    void StartGame()
+    {
+        gameState.Value = (int)GameState.PLAYING;
+        timerIsRunning = true;
+    }
+
 
     private void updateTime()
     {
@@ -40,12 +77,15 @@ public class MatchController : MonoBehaviour
                 if (timeRemaining <= 10 && timeRemaining >= 0)
                 {
                     int seconds = Mathf.FloorToInt(timeRemaining % 60);
-                    matchLastUpdateText.text = seconds + " seconds remaining!";
+                    if (matchLastUpdateText != null) matchLastUpdateText.text = seconds + " seconds remaining!";
                 }
             }
             else
             {
-                TimeRunOut();
+                if (IsServer)
+                {
+                    EndGame();
+                }
                 timeRemaining = 0;
                 timerIsRunning = false;
             }
@@ -59,8 +99,9 @@ public class MatchController : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        if(timeText!=null) timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
 
     void TimeRunOut()
     {
@@ -69,11 +110,11 @@ public class MatchController : MonoBehaviour
         PlayerScore max_score = playerScores[0];
         foreach (PlayerScore score in playerScores)
         {
-            if (score.score > max_score.score) max_score = score;
+            if (score.score.Value > max_score.score.Value) max_score = score;
             Debug.Log(score.playerName+": "+score.score);
         }
 
-        timeText.text = "The winner was " + max_score.playerName;
+        if (timeText != null) timeText.text = "The winner was " + max_score.playerName;
 
     }
 }
