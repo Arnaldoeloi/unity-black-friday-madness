@@ -2040,7 +2040,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScores: []
-  timeRemaining: 30
+  timeRemaining: 120
   timerIsRunning: 1
   timeText: {fileID: 0}
   matchLastUpdateText: {fileID: 0}
@@ -2892,6 +2892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wsAddress: ws://localhost:8081
+  maxPlayers: 2
 --- !u!114 &586475392
 MonoBehaviour:
   m_ObjectHideFlags: 0

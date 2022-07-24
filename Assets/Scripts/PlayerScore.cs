@@ -16,7 +16,7 @@ public class PlayerScore : NetworkBehaviour
 
     public string displayName;
 
-    public NetworkVariable<Unity.Collections.FixedString64Bytes> playerName;
+    public NetworkVariable<Unity.Collections.FixedString64Bytes> playerName = new NetworkVariable<Unity.Collections.FixedString64Bytes>(default, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     public AudioSource painSound;
 
@@ -24,16 +24,35 @@ public class PlayerScore : NetworkBehaviour
 
     public List<ScoreItem> itemsCollected;
 
+    public TextMesh playerNameAbvHead;
+
     void Start()
     {
         score.Value = 0;
-        playerName.Value= PlayerPrefs.GetString("playerNickname");
-
-        displayName = playerName.Value.ToString();
-
-        if (playerNameText != null) {
+        if (IsOwner)
+        {
+            playerName.Value = PlayerPrefs.GetString("playerNickname");
         }
-            playerNameText.text = playerName.Value.ToString();
+        displayName = playerName.Value.ToString();
+    }
+
+    public void OnNicknameChanged(Unity.Collections.FixedString64Bytes previous, Unity.Collections.FixedString64Bytes current)
+    {
+
+        Debug.Log("NicknameChanged: " + playerName.Value.ToString());
+        displayName = current.ToString();
+        if (playerNameAbvHead != null)
+        {
+            playerNameAbvHead.text = displayName;
+        }
+    }
+
+    public override void OnNetworkSpawn()
+    {
+
+        playerName.OnValueChanged += OnNicknameChanged;
+
+        Debug.Log("OnNetworkSpawn");
     }
 
     public void UpdateScore(int n)

@@ -23,10 +23,7 @@ public class ServerCreator : MonoBehaviour
     private int maxPlayers;
     private int timeLimit;
 
-    void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,8 +61,8 @@ public class ServerCreator : MonoBehaviour
 
         PlayerPrefs.SetString("serverType", "host");
         PlayerPrefs.SetString("serverName", serverName);
-        PlayerPrefs.SetInt("maxPlayers", maxPlayers);
-        PlayerPrefs.SetInt("timeLimit", timeLimit);
+        PlayerPrefs.SetInt("maxPlayers", int.Parse(maxPlayersDropdown.options[maxPlayers].text));
+        PlayerPrefs.SetInt("timeLimit", int.Parse(timeLimitDropdown.options[timeLimit].text));
         
         SceneManager.LoadScene("Mechanics");
     }

@@ -26,7 +26,7 @@ public class MatchController : NetworkBehaviour
 
     //private void Awake()
     //{
-        
+
     //}
 
 
@@ -38,8 +38,10 @@ public class MatchController : NetworkBehaviour
         timerIsRunning = false;
         if (matchLastUpdateText != null) matchLastUpdateText.text = "";
 
-        
-        gameState.Value= (int)GameState.WAITING_PLAYERS;
+        if (NetworkManager.Singleton.IsServer)
+        {
+            gameState.Value = (int)GameState.WAITING_PLAYERS;
+        }
 
     }
 
@@ -60,8 +62,11 @@ public class MatchController : NetworkBehaviour
     //[ClientRpc]
     void StartGame()
     {
-        gameState.Value = (int)GameState.PLAYING;
-        timerIsRunning = true;
+        if (NetworkManager.Singleton.IsServer)
+        {
+            gameState.Value = (int)GameState.PLAYING;
+            timerIsRunning = true;
+        }
     }
 
 
@@ -82,7 +87,7 @@ public class MatchController : NetworkBehaviour
             }
             else
             {
-                if (IsServer)
+                if (NetworkManager.Singleton.IsServer)
                 {
                     EndGame();
                 }

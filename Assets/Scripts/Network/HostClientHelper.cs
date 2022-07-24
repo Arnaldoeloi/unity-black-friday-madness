@@ -15,13 +15,28 @@ public class HostClientHelper : MonoBehaviour
     WebSocket ws;
     public string wsAddress = "ws://localhost:8081";
 
+    public int maxPlayers = 2;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-
         initializeWsConnection();
+        ServerSetup(); 
+
+       
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void ServerSetup()
+    {
+        UnityTransport netConfig = NetworkManager.Singleton.GetComponent<UnityTransport>();
 
         if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
         {
@@ -32,7 +47,6 @@ public class HostClientHelper : MonoBehaviour
             }
             else if (PlayerPrefs.GetString("serverType") == "client")
             {
-                UnityTransport netConfig = NetworkManager.Singleton.GetComponent<UnityTransport>();
 
                 string serverIp = PlayerPrefs.GetString("serverIp") != "" ? PlayerPrefs.GetString("serverIp") : "127.0.0.1";
                 int serverPort = PlayerPrefs.GetInt("serverPort") != 0 ? PlayerPrefs.GetInt("serverPort") : 7777;
@@ -43,14 +57,9 @@ public class HostClientHelper : MonoBehaviour
             else
             {
                 NetworkManager.Singleton.StartHost();
+                createServerOnList();
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 
@@ -63,13 +72,13 @@ public class HostClientHelper : MonoBehaviour
         
         Payload payload = new Payload();
 
-
+        maxPlayers = PlayerPrefs.GetInt("maxPlayers") != 0 ? PlayerPrefs.GetInt("maxPlayers") : 2;
 
         payload.playerId = PlayerPrefs.GetInt("playerId");
-        payload.nickname = PlayerPrefs.GetString("playerNickname");
+        payload.hostNickname = PlayerPrefs.GetString("playerNickname");
         payload.serverName = PlayerPrefs.GetString("serverName")!="" ? PlayerPrefs.GetString("serverName"): "Server";
         payload.serverTimeLimit = PlayerPrefs.GetInt("timeLimit") != 0 ? PlayerPrefs.GetInt("timeLimit") : 120;
-        payload.maxPlayers = PlayerPrefs.GetInt("maxPlayers")!=0 ? PlayerPrefs.GetInt("maxPlayers") : 2;
+        payload.maxPlayers = maxPlayers;
         payload.serverIp = netConfig.ConnectionData.Address;
         payload.serverPort = netConfig.ConnectionData.Port;
 
@@ -104,7 +113,7 @@ public class HostClientHelper : MonoBehaviour
     public class Payload
     {
         public int playerId;
-        public string nickname;
+        public string hostNickname;
         public string serverName;
         public int serverTimeLimit;
         public int maxPlayers;
